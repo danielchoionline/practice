@@ -22,10 +22,12 @@ shuffle(questions);
 
 const allAnswers = questions.map(q => q.answer);
 let index = 0;
+let correctCount = 0;
 
 const questionDiv = document.getElementById('question');
 const choicesDiv = document.getElementById('choices');
 const feedbackDiv = document.getElementById('feedback');
+const scoreDiv = document.getElementById('score');
 const currentButtons = [];
 
 function showQuestion() {
@@ -33,6 +35,7 @@ function showQuestion() {
     questionDiv.textContent = 'Quiz complete!';
     choicesDiv.innerHTML = '';
     feedbackDiv.textContent = '';
+    scoreDiv.textContent = `Final Score: ${correctCount} / ${questions.length}`;
     return;
   }
 
@@ -59,6 +62,7 @@ function showQuestion() {
   });
   feedbackDiv.textContent = '';
   feedbackDiv.style.color = '';
+  scoreDiv.textContent = `Score: ${correctCount} / ${index}`;
 }
 
 function checkAnswer(selected, correct) {
@@ -66,6 +70,8 @@ function checkAnswer(selected, correct) {
     feedbackDiv.textContent = 'Correct!';
     feedbackDiv.style.color = 'green';
     index += 1;
+    correctCount += 1;
+    scoreDiv.textContent = `Score: ${correctCount} / ${index}`;
     setTimeout(showQuestion, 500);
   } else {
     feedbackDiv.textContent = 'Try again.';
