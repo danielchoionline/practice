@@ -26,6 +26,7 @@ let index = 0;
 const questionDiv = document.getElementById('question');
 const choicesDiv = document.getElementById('choices');
 const feedbackDiv = document.getElementById('feedback');
+const currentButtons = [];
 
 function showQuestion() {
   if (index >= questions.length) {
@@ -48,23 +49,38 @@ function showQuestion() {
   shuffle(answers);
 
   choicesDiv.innerHTML = '';
+  currentButtons.length = 0;
   answers.forEach(ans => {
     const btn = document.createElement('button');
     btn.textContent = ans;
     btn.addEventListener('click', () => checkAnswer(ans, q.answer));
     choicesDiv.appendChild(btn);
+    currentButtons.push(btn);
   });
   feedbackDiv.textContent = '';
+  feedbackDiv.style.color = '';
 }
 
 function checkAnswer(selected, correct) {
   if (selected === correct) {
     feedbackDiv.textContent = 'Correct!';
+    feedbackDiv.style.color = 'green';
     index += 1;
     setTimeout(showQuestion, 500);
   } else {
     feedbackDiv.textContent = 'Try again.';
+    feedbackDiv.style.color = 'red';
   }
 }
 
 showQuestion();
+
+document.addEventListener('keydown', (e) => {
+  if (['1', '2', '3', '4'].includes(e.key)) {
+    const idx = parseInt(e.key, 10) - 1;
+    const btn = currentButtons[idx];
+    if (btn) {
+      btn.click();
+    }
+  }
+});
