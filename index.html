@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Times Table Quiz (13-19)</title>
-  <script defer src="script.js"></script>
+  <title>Times Table Quiz</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,30 +11,20 @@
       flex-direction: column;
       align-items: center;
     }
-    #question {
-      font-size: 2em;
-      margin-bottom: 10px;
+    h1 {
+      margin-bottom: 20px;
     }
-    .choices button {
+    button {
       margin: 5px;
       padding: 10px 20px;
-      font-size: 1.2em;
-    }
-    #feedback {
-      margin-top: 10px;
-      font-size: 1.2em;
-    }
-    #score {
-      margin-top: 10px;
       font-size: 1.2em;
     }
   </style>
 </head>
 <body>
-  <h1>Times Table Quiz (13-19)</h1>
-  <div id="question"></div>
-  <div id="choices" class="choices"></div>
-  <div id="feedback"></div>
-  <div id="score"></div>
+  <h1>Select Quiz Mode</h1>
+  <button onclick="location.href='standard.html'">Standard Mode</button>
+  <button onclick="location.href='infinity.html'">Infinity Mode</button>
+  <button onclick="location.href='calculator.html'">Calculator Mode</button>
 </body>
 </html>
